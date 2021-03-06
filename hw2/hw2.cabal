@@ -1,0 +1,69 @@
+name:                hw2
+version:             0.1.0.0
+synopsis:            Synopsis for task 2
+description:         Task 2 for FP ITMO course
+
+homepage:            https://github.com/PolinB/fp-homework/tree/master/hw2#readme
+license:             MIT
+license-file:        LICENSE
+author:              Polina Burtseva
+maintainer:          PolinB2413@gmail.com
+copyright:           2020 Polina Burtseva
+
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+tested-with:         GHC == 8.0.1
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     FileSystemMod
+                     , BuildStructure
+                     , Commands
+                     , Parser
+                     , CommandParser
+                     , InteractiveIO
+  ghc-options:         -Wall
+  build-depends:       base >= 4.9 && < 5
+                     , directory
+                     , time
+                     , filepath
+                     , mtl
+                     , transformers
+  default-language:    Haskell2010
+
+executable hw2
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , hw2
+                     , time
+                     , filepath
+                     , mtl
+                     , transformers
+                     , directory
+  default-language:    Haskell2010
+
+test-suite hw2-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             SpecTest.hs
+  build-depends:       base
+                     , hspec
+                     , QuickCheck        >= 2.12 && < 2.14
+                     , hw2
+                     , time
+                     , tasty
+                     , tasty-hspec
+                     , tasty-quickcheck
+                     , directory
+                     , filepath
+                     , mtl
+                     , transformers
+  other-modules:       ParserTest
+                     , FsCommandTest
+                     , CvsCommandTest
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
